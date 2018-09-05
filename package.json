@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bin/start.js"
+    "start": "node bin/start.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
     "debug": "^3.1.0",
     "dotenv": "^6.0.0",
     "expect": "^23.5.0",
-    "express": "^4.16.3",
     "nconf": "^0.10.0",
     "path": "^0.12.7",
     "pg": "^7.4.3",
@@ -30,5 +29,9 @@
     "spotify-web-api-node": "^3.1.1",
     "winston": "^3.0.0",
     "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
