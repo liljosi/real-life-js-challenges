@@ -5,6 +5,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 describe('Testing spotify authentication', async () => {
   it('/api/token spotify access_token obtained and set', async () => {
     let response = await authLib.auth()
-    expect(response).to.be.ok
+    console.log(response)
+    expect(response._credentials.accessToken).to.be.ok
   })
 })

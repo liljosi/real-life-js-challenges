@@ -2,9 +2,8 @@
   "name": "real-life-js-challenges",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node bin/start.js",
     "test": "mocha"
   },
   "repository": {
