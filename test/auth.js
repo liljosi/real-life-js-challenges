@@ -1,11 +1,14 @@
 const expect = require('chai').expect
 const authLib = require('../lib/spotify/auth')
-const SpotifyWebApi = require('spotify-web-api-node')
 
 describe('Testing spotify authentication', async () => {
-  it('/api/token spotify access_token obtained and set', async () => {
+  it('if credentials are not sent it will be a bad request', async () => {
     let response = await authLib.auth()
-    console.log(response)
+    expect(response.errors[0].statusCode).to.equal(400)
+  })
+  it('if credentials are sent token will be obtained for further requests', async () => {
+    let response = await authLib.auth()
     expect(response._credentials.accessToken).to.be.ok
   })
 })
+
