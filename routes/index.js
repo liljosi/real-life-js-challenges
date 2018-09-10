@@ -13,7 +13,7 @@ const songs = async (userId, playlistId) => {
 
 router.get('/', async (req, res, next) => {
   let playlistSongs = await songs('07eoivmqhpamcrrsil14vfz07', '5F2lnUg2du5po7pNMQqEVN')
-  res.render('index', { songs: JSON.stringify(playlistSongs.body), title: 'Challenge' })
+  res.render('index', { songUrl: playlistSongs.body.tracks.items[0].track.uri, title: 'Challenge' })
 })
 
 module.exports = router
