@@ -7,3 +7,7 @@
 ## const newMessage = new Twilio(message, phone)
 
 ## newMessage.send()
+
+# Note
+
+## Because twilio-whatsapp messaging is in beta, it will accept any number to send messages to. All requests will be passed and will return the corresponding json envolving the success of the request. 

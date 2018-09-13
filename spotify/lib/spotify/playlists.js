@@ -5,7 +5,7 @@ const getUserPlaylistByName = async (userId) => {
     let authData = await authLib.auth()
     return authData.getUserPlaylists(userId)
   } catch (error) {
-    return {errors: [error]}
+    return error
   }
 }
 const getPlaylistSongs = async (userId, playlistId) => {
@@ -13,7 +13,7 @@ const getPlaylistSongs = async (userId, playlistId) => {
     let authData = await authLib.auth()
     return authData.getPlaylist(userId, playlistId)
   } catch (error) {
-    return {errors: [error]}
+    return error
   }
 }
 
