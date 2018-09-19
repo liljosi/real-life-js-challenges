@@ -14,7 +14,6 @@ let cloudinaryCredentials = {
   api_secret: process.env.API_SECRET
 }
 cloudinary.config(cloudinaryCredentials)
-// const rekognition = new AWS.Rekognition({apiVersion: '2016-06-27'})
 const s3 = new AWS.S3({apiVersion: '2006-03-01'})
 
 const createBucket = async (bucketName) => {
@@ -27,7 +26,6 @@ const createBucket = async (bucketName) => {
 }
 const uploadImage = async (bucketName, imageName, imageLink, mimeType) => {
   try {
-    cloudinary.image(imageLink)
     const rs = fs.createReadStream(imageLink)
     rs.on('open', () => {
       logger.info('OPEN')

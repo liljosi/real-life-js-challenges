@@ -15,9 +15,9 @@ const uploadImage = async (image, publicId) => {
     throw error
   }
 }
-const resizeUploadedImage = async (image) => {
+const resizeUploadedImage = async (imageUrl) => {
   try {
-    const resizedImage = await cloudinary.v2.image(image, { width: 800, height: 600, crop: 'scale' })
+    const resizedImage = await cloudinary.image(imageUrl, { width: 800, height: 600, crop: 'scale' })
     return resizedImage
   } catch (error) {
     throw error
