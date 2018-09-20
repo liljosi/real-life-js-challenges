@@ -10,12 +10,14 @@ const rekognition = new AWS.Rekognition({apiVersion: '2016-06-27'})
 
 const detectFaces = async (imageLink) => {
   try {
-    const rs = fs.readFileSync(imageLink, { encoding: 'base64' })
-    console.log(rs)
+    const bitmap = fs.readFileSync(imageLink)
     const params = {
       Image: {
-        Bytes: rs
-      }
+        Bytes: bitmap
+      },
+      Attributes: [
+        'ALL'
+      ]
     }
     const faceDetected = await rekognition.detectFaces(params).promise()
     return faceDetected

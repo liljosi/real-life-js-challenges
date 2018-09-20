@@ -1,12 +1,15 @@
 const imageProcessLib = require('../lib/aws/rekognition')
-const imageLink = '/Users/sandra/Downloads/presi.jpg'
+const imageLink = process.argv[2]
+const logger = require('../lib/logger')
 
-it('detects faces', async () => {
+it('detects faces', async (done) => {
   await imageProcessLib.detectFaces(imageLink)
     .then(response => {
-      console.log(response)
+      logger.info(response)
+      expect.objectContaining(response.FaceDetails)
     })
     .catch(error => {
-      console.log(error)
+      logger.error(error)
     })
+  done()
 })
