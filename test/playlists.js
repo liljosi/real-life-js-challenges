@@ -15,6 +15,7 @@ describe('Getting user playlists and playlist tracks', () => {
   })
   it('should return error if clientId not sent when getting users playlists', async () => {
     let playlist = await playlistLib.getUserPlaylistByName('')
+    expect(playlist).to.not.be.ok
   })
    it('if token not set users playlist songs wont be recovered', async () => {
     let songs = await playlistLib.getPlaylistSongs(userId, playlistId)
