@@ -1,3 +1,4 @@
+
 const requestLib = require('../lib/request/getHTML')
 const cheerioLib = require('../lib/cheerio/getHeaders')
 let link
@@ -8,16 +9,15 @@ class Scrap {
       throw new Error('Invalid url, must be a string')
     }
     link = url
+    this.headers = this.headers.bind(this)
   }
   headers (cb) {
-    requestLib.getHTML(link, (error, response, body) => {
+    requestLib.getHTML(link, (error, body) => {
       if (error) {
         cb(error)
       } else {
-        if (response.status === 200) {
-          let headers = cheerioLib.getHeaders(body)
-          cb(headers)
-        }
+        let headers = cheerioLib.getHeaders(link, body)
+        cb(null, headers)
       }
     })
   }

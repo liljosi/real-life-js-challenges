@@ -1,15 +1,13 @@
-const htmlLib = require('../lib/request/getHTML')
-const headerLib = require('../lib/cheerio/getHeaders')
-const logger = require('../lib/logger')
+const Scrap = require('../lib/main')
 const link = 'http://www.jornada.com.mx/ultimas/deportes/'
 
 it('gets headers', done => {
-  htmlLib.getHTML(link, (error, body) => {
+  const scrapHeaders = new Scrap(link)
+  scrapHeaders.headers((error, response) => {
     if (error) {
-      logger.error(error)
+      console.log(error)
     } else {
-      let headers = headerLib.getHeaders(link, body)
-      console.log(headers)
+      console.log(response)
       done()
     }
   }, 30000)
