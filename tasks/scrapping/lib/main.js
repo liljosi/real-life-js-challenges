@@ -9,7 +9,6 @@ class Scrap {
       throw new Error('Invalid url, must be a string')
     }
     link = url
-    this.headers = this.headers.bind(this)
   }
   headers (cb) {
     requestLib.getHTML(link, (error, body) => {
