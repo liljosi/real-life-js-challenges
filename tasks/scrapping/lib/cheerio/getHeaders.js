@@ -16,7 +16,8 @@ const getHeaders = (link, html) => {
   const headers = []
   const $ = cheerio.load(html)
   $(classes).children().each((index, element) => {
-    headers.push(element)
+    const title = $(element).text()
+    headers.push(title)
   })
   return headers
 }
