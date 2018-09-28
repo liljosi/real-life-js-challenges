@@ -21,14 +21,13 @@ class Scrap {
       }
     })
   }
-  translate (titles, targetLanguage, cb) {
-    googleLib.translateTitles(titles, targetLanguage, (error, response) => {
-      if (error) {
-        cb(error)
-      } else {
-        cb(null, response)
-      }
-    })
+  async translate (titles, targetLanguage) {
+    try {
+      const translatedTitle = await googleLib.translateTitles(titles, targetLanguage)
+      return translatedTitle
+    } catch (error) {
+      throw error
+    }
   }
 }
 

@@ -23,7 +23,7 @@ const desiredTranslation = (targetLanguage, text) => {
   }
 }
 
-const translateTitles = (text, targetLanguage, cb) => {
+const translateTitles = async (text, targetLanguage) => {
   let params = desiredTranslation(targetLanguage, text)
   if (params.TargetLanguageCode !== 'en') {
     let param = {
@@ -31,28 +31,20 @@ const translateTitles = (text, targetLanguage, cb) => {
       SourceLanguageCode: 'es',
       TargetLanguageCode: 'en'
     }
-    translate.translateText(param, (error, response) => {
-      if (error) {
-        logger.error(error)
-      } else {
-        translate.translateText({Text: response.TranslatedText, SourceLanguageCode: 'en', TargetLanguageCode: targetLanguage}, (error, response) => {
-          if (error) {
-            cb(error)
-          } else {
-            cb(null, response)
-          }
-        })
-      }
-    })
+    try {
+      const firstTranslation = await translate.translateText(param)
+      const finalTranslation = await translate.translateText({Text: firstTranslation.TranslatedText, SourceLanguageCode: 'en', TargetLanguageCode: targetLanguage})
+      return finalTranslation
+    } catch (error) {
+      throw error
+    }
   } else {
-    translate.translateText(params, (error, response) => {
-      if (error) {
-        logger.error(error)
-        cb(error)
-      } else {
-        cb(null, response)
-      }
-    })
+    try {
+      const translation = await translate.translateText(params)
+      return translation
+    } catch (error) {
+      throw error
+    }
   }
 }
 
